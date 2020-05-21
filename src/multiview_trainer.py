@@ -21,6 +21,10 @@ def train(config):
   dev_sampler = load("dev_sampler", config, examples=dev_data.examples)
   dev_data.init_data_loader(dev_sampler)
 
+  test_data = load("test_data", config, vocab=vocab)
+  test_sampler = load("test_sampler", config, examples=test_data.examples)
+  test_data.init_data_loader(test_sampler)
+
   loss_fn = load("loss", config)
   eval_fn = load("eval", config)
 
@@ -65,8 +69,11 @@ def train(config):
       if config.global_step == sched.best_global_step:
         save_many(train_data, net, optim, sched,
                   tag=config.global_step, best=True)
-        savez("save/embs", **out)
 
   log.info(f"Converged?= {optim.converged}")
-  if not optim.converged:
-    save_many(train_data, net, optim, sched, tag=config.global_step)
+
+  net.load(tag="best")
+  _, dev_out = eval_fn(net, dev_data)
+  savez("save/dev-embs", **dev_out)
+  _, test_out = eval_fn(net, test_data)
+  savez("save/test-embs", **test_out)
