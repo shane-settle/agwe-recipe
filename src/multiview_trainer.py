@@ -72,8 +72,13 @@ def train(config):
 
   log.info(f"Converged?= {optim.converged}")
 
+  log.info("Evaluating best model on dev and test:")
   net.load(tag="best")
+
+  log.info("dev score:")
   _, dev_out = eval_fn(net, dev_data)
   savez("save/dev-embs", **dev_out)
+
+  log.info("test score:")
   _, test_out = eval_fn(net, test_data)
   savez("save/test-embs", **test_out)
