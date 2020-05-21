@@ -4,7 +4,7 @@ from utils.loader import load
 from saver.saver import savez
 
 
-def train(config):
+def evaluate(config):
 
   vocab = load("vocab_data", config)
   vocab_sampler = load("vocab_sampler", config, examples=vocab.examples)
