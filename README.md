@@ -1,7 +1,7 @@
 # agwe-recipe
 
-This recipe trains acoustic and written word embeddings on paired data
-consisting of word labels and spoken word segments.
+This recipe trains acoustic word embeddings (AWEs) and acoustically grounded word embeddings (AGWEs) on paired data
+consisting of word labels (given by their character sequences) and spoken word segments.
 
 The training objective is based on the multiview triplet loss functions
 of [Wanjia et al., 2016](https://arxiv.org/pdf/1611.04496.pdf).
