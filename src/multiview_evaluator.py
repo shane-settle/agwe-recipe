@@ -24,7 +24,7 @@ def evaluate(config):
              view1_input_size=dev_data.input_feat_dim,
              view2_num_embeddings=dev_data.input_num_subwords)
   net.cuda()
-  net.load(tag="best")
+  net.load(tag=config.global_step)
 
   log.info("Evaluating best model on dev and test:")
 

@@ -18,6 +18,7 @@
     "eval_fn": "metric.multiview_ap.MultiViewAP",
     "eval_full_vocab": false,
     "eval_metric": "crossview_ap",
+    "global_step": "best",
     "main_fn": "multiview_evaluator.evaluate",
     "net_fn": "multiview_rnn.MultiViewRNN",
     "net_proj": null,
