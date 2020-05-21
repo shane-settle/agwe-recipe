@@ -21,6 +21,9 @@ Edit `train_config.json` and run `train.sh`
 
 ### Evaluate
 Edit `eval_config.json` and run `eval.sh`
+```
+./eval.sh
+```
 
 ### Results
 With the default train_config.json you should obtain the following results:
