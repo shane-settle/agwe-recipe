@@ -35,9 +35,10 @@ with open(config_file, "r") as f:
   if not hasattr(config, "config_file"):
     config.config_file = config_file
 
-random.seed(config.global_step)
-np.random.seed(config.global_step)
-torch.manual_seed(config.global_step)
+if isinstance(config.global_step, int):
+  random.seed(config.global_step)
+  np.random.seed(config.global_step)
+  torch.manual_seed(config.global_step)
 
 log.info(f"Calling main function: {config.main_fn}")
 log.info(f"Using config file: {config.config_file}")
